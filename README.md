@@ -1,0 +1,39 @@
+## Curso Mobile
+- Introdução a POO(Programação Orientada a Objetos)
+    - Java 
+        - Instalação e Configuração
+        - Lógica de programação em Java(Calculadora)
+        - Conceitos:
+            - Classe
+            - Objeto
+            - Herança
+            - Polimorfismo
+            - Encapsulamento
+            - Abstração
+
+- Introdução a aplicativos mobile
+    - Tipos de desenvolvimento:
+        - Nativo
+            - Android:
+                - IDE: Android Studio
+                - SDK: Android SDK
+                - Linguagens: Kotlin / Java
+                - Plataformas: Windows / Linux / Mac
+            - IOS:
+                - IDE: Xcode
+                - SDK: Cocoa Touch
+                - Linguagens: Swift / ObjC
+                - Plataforma: Mac
+        - Multiplataforma
+            - React Native
+                - Linguagem: JavaScript
+                - SDK: node.js
+                - Resultado: Android / IOS / Web
+            - Flutter (Nosso)
+                - Linguagem: Dart
+                - SDK: Flutter SDK
+                - Resultado: Android / IOS / Web / Win / Mac / Linux
+            - Ionic - (!Aplicativos Nativos)
+                - Linguagem
+                - SDK: Node.js
+                - Resultado: Android / IOS / Wen (não Nativos - RunTime)
