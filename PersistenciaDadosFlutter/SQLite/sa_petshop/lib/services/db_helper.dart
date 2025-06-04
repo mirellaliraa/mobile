@@ -2,6 +2,7 @@
 // class Singleton -> de objeto unico
 
 import 'package:path/path.dart';
+import 'package:sa_petshop/models/consulta_model.dart';
 import 'package:sa_petshop/models/pet_model.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite/sqlite_api.dart';
@@ -95,7 +96,30 @@ class DbHelper {
   }
 
   // métodos CRUD para consultas
+  // create Consulta
+  Future<int> insertConsulta(Consulta consulta) async{
+    final db = await database;
+    return await db.insert("consultas", consulta.toMap());
+  }
 
+  // get Consulta -> by Pet
+  Future<List<Consulta>> getConsultaByPetId(int petId) async{
+    final db = await database;
+    final List<Map<String,dynamic>> maps = await db.query(
+      "consultas",
+      where: "petId = ?",
+      whereArgs: [petId],
+      orderBy: "data_hora ASC" // ordenar por data e hora da consulta
+      );
+      // converter a maps em obj
+      return maps.map((e)=>Consulta.fromMap(e)).toList();
+  }
+
+  // Delete consulta
+  Future<int> deleteConsulta(int id) async{
+    final db = await database;
+    return await db.delete("consultas", where: "id=?", whereArgs: [id]);
+  }
 
 }
 
