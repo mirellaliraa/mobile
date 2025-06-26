@@ -19,6 +19,14 @@ class _CriarColecaoState extends State<CriarColecao> {
   late String _descricao;
   late String _tipo;
 
+  final List<String> _tipos = ['Discos', 'Selos', 'Moedas', 'Outro'];
+
+  @override
+  void initState() {
+    super.initState();
+    _tipo = _tipos.first;
+  }
+
   Future<void> _salvarColecao() async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();

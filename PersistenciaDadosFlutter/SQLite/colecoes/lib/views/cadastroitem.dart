@@ -56,7 +56,7 @@ class _CadastroItemState extends State<CadastroItem>{
                 decoration: InputDecoration(labelText: "Valor"),
                 validator: (value) =>
                     value == null || value.isEmpty ? "Campo obrigatório" : null,
-                onSaved: (value) => _valor = value!,
+                onSaved: (value) => _valor = double.parse(value!),
               ),
               TextFormField(
                 decoration: InputDecoration(labelText: "Ano"),

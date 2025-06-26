@@ -1,5 +1,5 @@
 import 'package:colecoes/models/colecaomodel.dart';
-import 'package:colecoes/models/discosmodel.dart';
+import 'package:colecoes/models/itemmodel.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -58,13 +58,13 @@ class DbHelper {
       return await db.insert("itens", itens.toMap());
     }
 
-    Future<List<Item>> getDiscos() async{
+    Future<List<Item>> getItem() async{
       final db = await database;
       final List<Map<String,dynamic>> maps = await db.query("itens");
       return maps.map((e)=>Item.fromMap(e)).toList();
     }
 
-    Future<int> updateDisco(Item itens) async{
+    Future<int> updateItem(Item itens) async{
       final db = await database;
       return await db.update(
         "itens",
