@@ -1,6 +1,6 @@
-import 'package:colecao_discos/controller/discoscontroller.dart';
-import 'package:colecao_discos/models/discosmodel.dart';
-import 'package:colecao_discos/views/cadastro_disco.dart';
+import 'package:colecoes/controller/colecoescontroller.dart';
+import 'package:colecoes/models/colecaomodel.dart';
+import 'package:colecoes/views/criarcolecao.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget{
@@ -9,8 +9,8 @@ class HomeScreen extends StatefulWidget{
 }
 
 class _HomeScreenState extends State<HomeScreen>{
-  final DiscosController _discosController = DiscosController();
-  List<Discos> _discos = [];
+  final _colecaoController = ColecoesController();
+  List<Colecao> _colecoes = [];
   bool _isLoading = true;
 
   @override
@@ -24,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen>{
       _isLoading = true;
     });
     try {
-      _discos = await _discosController.readDiscos();
+      _colecoes = await _colecaoController.readColecao();
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Exception: $e")));
@@ -38,32 +38,33 @@ class _HomeScreenState extends State<HomeScreen>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Coleção de discos"),),
+      appBar: AppBar(title: Text("Suas coleções"),),
       body: _isLoading
       ? Center(child: CircularProgressIndicator())
-      : _discos.isEmpty
-      ? Center(child: Text("Nenhum disco cadastrado"))
+      : _colecoes.isEmpty
+      ? Center(child: Text("Nenhuma coleção cadastrada"))
       : Padding(
         padding: EdgeInsets.all(16),
         child: ListView.builder(
-          itemCount: _discos.length,
+          itemCount: _colecoes.length,
           itemBuilder: (context, index){
-            final discos = _discos[index];
+            final colecao = _colecoes[index];
             return Card(
               child: ListTile(
-                title: Text(discos.nome),
-                subtitle: Text(discos.artista),
-                trailing: Text(discos.ano.toString()),
+                title: Text(colecao.nome),
+                subtitle: Text(colecao.descricao),
+                trailing: Text(colecao.tipo),
             ),
             );
           },
         ),
         ),
         floatingActionButton: FloatingActionButton(
-          tooltip: "Adicionar novo pet",
+          tooltip: "Adicionar nova coleção",
           child: Icon(Icons.add),
           onPressed: () async {
-            await Navigator.push(context, MaterialPageRoute(builder: (context) => CadastroDisco()));
+            await Navigator.push(context, MaterialPageRoute(builder: (context) => CriarColecao()));
+            _carregarDados();
         },
         ),
     );

@@ -1,4 +1,4 @@
-package com.example.colecao_discos
+package com.example.colecoes
 
 import io.flutter.embedding.android.FlutterActivity
 

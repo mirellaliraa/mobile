@@ -2,33 +2,30 @@ import 'package:intl/intl.dart';
 
 class Colecao{
   final int? id;
-  final int discoId;
-  final String dono;
-  final DateTime dataAdicao;
+  final String nome;
+  final String descricao;
+  final String tipo;
 
   Colecao({
     this.id,
-    required this.discoId,
-    required this.dono,
-    required this.dataAdicao,
+    required this.nome,
+    required this.descricao,
+    required this.tipo,
   });
 
   Map<String, dynamic> toMap() => {
     "id":id,
-    "disco_id":discoId,
-    "dono":dono,
-    "data_adicao": dataAdicao.toIso8601String(),
+    "nome":nome,
+    "descricao":descricao,
+    "tipo": tipo,
   };
 
   factory Colecao.fromMap(Map<String, dynamic> map) =>
   Colecao(
-    discoId: map["discoId"] as int, 
-    dono: map["dono"] as String, 
-    dataAdicao: map["dataAdicao"] as DateTime,
+    id: map["id"] as int?,
+    nome: map["nome"] as String, 
+    descricao: map["descricao"] as String, 
+    tipo: map["tipo"] as String,
     );
 
-    String get dataHoraLocal {
-      final local = DateFormat("dd/mm/yyyy HH:mm");
-      return local.format(dataAdicao);
-    }
 }

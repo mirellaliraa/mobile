@@ -1,5 +1,5 @@
-import 'package:colecao_discos/models/colecaomodel.dart';
-import 'package:colecao_discos/services/db_helper.dart';
+import 'package:colecoes/models/colecaomodel.dart';
+import 'package:colecoes/services/db_helper.dart';
 
 class Colecoescontroller {
   final DbHelper _dbHelper = DbHelper();

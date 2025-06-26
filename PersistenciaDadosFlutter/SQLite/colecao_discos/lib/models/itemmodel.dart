@@ -1,15 +1,15 @@
-class Discos {
+class Item {
   final int? id;
   final String nome;
-  final String artista;
   final String descricao;
+  final double valor;
   final int ano;
 
-  Discos({
+  Item({
     this.id,
     required this.nome,
-    required this.artista,
     required this.descricao,
+    required this.valor,
     required this.ano
   });
 
@@ -17,20 +17,19 @@ class Discos {
     return{
       "id": id,
       "nome": nome,
-      "artista": artista,
       "descricao": descricao,
+      "valor": valor,
       "ano": ano
     };
   }
-
-  factory Discos.fromMap(Map<String,dynamic> map){
-    return Discos(
+  
+  factory Item.fromMap(Map<String,dynamic> map){
+    return Item(
       id: map["id"] as int?,
       nome: map["nome"] as String, 
-      artista: map ["artista"] as String, 
-      descricao: ["descricao"] as String, 
-      ano: ["ano"] as int,
-      );
+      descricao: map ["descricao"] as String, 
+      valor: map["valor"] as double, 
+      ano: map["ano"] as int,
+    );
   }
-
 }

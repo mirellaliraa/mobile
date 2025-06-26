@@ -1,5 +1,5 @@
-import 'package:colecao_discos/models/colecaomodel.dart';
-import 'package:colecao_discos/models/discosmodel.dart';
+import 'package:colecoes/models/colecaomodel.dart';
+import 'package:colecoes/models/discosmodel.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -20,7 +20,7 @@ class DbHelper {
 
   Future<Database> _initDatabase() async{
     final dbPath = await getDatabasesPath();
-    final path = join(dbPath,"colecao_discos.db");
+    final path = join(dbPath,"colecoes.db");
 
     return await openDatabase(
       path,
@@ -34,42 +34,43 @@ class DbHelper {
     await db.execute(
       """CREATE TABLE IF NOT EXISTS colecao(
       id INTEGER PRIMARY KEY AUTOINCREMENT,
-      disco_id INTEGER NOT NULL,
-      dono TEXT NOT NULL,
-      data_adicao TEXT NOT NULL)"""
+      nome TEXT NOT NULL,
+      descricao TEXT NOT NULL,
+      tipo TEXT NOT NULL
+      )"""
     );
     print("tabela colecoes criada");
 
-  // discos
+  // itens
     await db.execute(
-      """CREATE TABLE IF NOT EXISTS discos(
+      """CREATE TABLE IF NOT EXISTS itens(
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       nome TEXT NOT NULL,
-      arista TEXT NOT NULL,
       descricao TEXT NOT NULL,
+      valor REAL NOT NULL,
       ano INTEGER NOT NULL
       )"""
     );
-    print("tabela discos criada");
+    print("tabela itens criada");
     }
-    Future<int> insertDisco(Discos discos) async{
+    Future<int> insertItem(Item itens) async{
       final db = await database;
-      return await db.insert("discos", discos.toMap());
+      return await db.insert("itens", itens.toMap());
     }
 
-    Future<List<Discos>> getDiscos() async{
+    Future<List<Item>> getDiscos() async{
       final db = await database;
-      final List<Map<String,dynamic>> maps = await db.query("discos");
-      return maps.map((e)=>Discos.fromMap(e)).toList();
+      final List<Map<String,dynamic>> maps = await db.query("itens");
+      return maps.map((e)=>Item.fromMap(e)).toList();
     }
 
-    Future<int> updateDisco(Discos discos) async{
+    Future<int> updateDisco(Item itens) async{
       final db = await database;
       return await db.update(
-        "discos",
-        discos.toMap(),
+        "itens",
+        itens.toMap(),
         where: "id = ?",
-        whereArgs: [discos.id],
+        whereArgs: [itens.id],
         );
     }
 
