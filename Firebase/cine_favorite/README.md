@@ -116,7 +116,7 @@ graph TD
 ```mermaid
 
 graph TD
-    A[Início] --> B {Login usuário}
+    A[Início] --> B{Login usuário}
     B --> C[Inserir email e senha]
     C --> D{Validar as credenciais}
     D --> E[Sim]
