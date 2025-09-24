@@ -117,7 +117,7 @@ graph TD
 
 graph TD
     A[Início] --> B {Login usuário}
-    B --> C [Inserir email e senha]
+    B --> C[Inserir email e senha]
     C --> D{Validar as credenciais}
     D --> E[Sim]
     C --> F[Tela de favoritos]
