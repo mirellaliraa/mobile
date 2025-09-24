@@ -78,7 +78,7 @@ classDiagram
         - Dar nota aos filmes
         - Remover dos favoritos
 ```mermaid
-graphTD
+graph TD
     subgraph "Ações"
         uc1([Register])
         uc2([Login])
@@ -115,7 +115,7 @@ graphTD
 
 ```mermaid
 
-graphTD
+graph TD
     A[Início] --> B {Login usuário}
     B --> C [Inserir email e senha]
     C --> D{Validar as credenciais}
