@@ -28,11 +28,12 @@ class FavoriteMovie {
   }
 
   // fromMap
-  factory FavoriteMovie.fromMap(Map<String,dynamic> map){
+  factory FavoriteMovie.fromMap(Map<String, dynamic> map) {
     return FavoriteMovie(
-      id: map["id"], 
-      title: map["title"], 
-      posterPath: map["posterPath)"],
-      rating: (map["rating"] as num).toDouble());
+      id: map["id"],
+      title: map["title"],
+      posterPath: map["posterPath"],
+      rating: (map["rating"] as num?)?.toDouble() ?? 0,
+    );
   }
 }

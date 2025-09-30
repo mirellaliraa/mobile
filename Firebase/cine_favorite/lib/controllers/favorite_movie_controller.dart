@@ -33,7 +33,7 @@ class FavoriteMovieController {
     final movie = FavoriteMovie(
       id: movieData["id"],
       title: movieData["title"],
-      posterPath: movieData["poster_path"],
+      posterPath: imagemFile.path.toString(),
     );
 
     // adicionar o Obj ao FireStore
@@ -49,22 +49,18 @@ class FavoriteMovieController {
   // Stream => listener, pega a lista de favoritos sempre que for modificada
   Stream<List<FavoriteMovie>> getFavoriteMovies() {
     // verifica se o usuário existe
-    if (currentUser == null)
-      return Stream.value([]); // retorna a lista vazia caso não tenha usuário
+    if (currentUser == null) return Stream.value([]); // retorna a lista vazia caso não tenha usuário
     return _db
         .collection("users")
         .doc(currentUser!.uid)
         .collection("favorite_movies")
         .snapshots()
-        .map(
-          (snapshot) => snapshot.docs
-              .map((i) => FavoriteMovie.fromMap(i.data()))
-              .toList(),
-        );
+        .map((e) => e.docs.map(
+          (i) => FavoriteMovie.fromMap(i.data())).toList());
   }
 
   // removeFavorite
-  void removeFavoriteMovie(int movieId) async {
+  void removeFavoriteMovie (int movieId) async {
     if (currentUser == null) return;
     await _db
         .collection("users")
@@ -84,7 +80,7 @@ class FavoriteMovieController {
   }
 
   // updateRating
-  void updateMovieRating(int movieId, double rating) async {
+  void updateMovieRating (int movieId, double rating) async {
     if (currentUser == null) return;
     await _db
         .collection("users")

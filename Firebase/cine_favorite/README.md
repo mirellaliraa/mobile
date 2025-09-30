@@ -77,6 +77,7 @@ classDiagram
         - Salvar filmes favoritos
         - Dar nota aos filmes
         - Remover dos favoritos
+        
 ```mermaid
 graph TD
     subgraph "Ações"
